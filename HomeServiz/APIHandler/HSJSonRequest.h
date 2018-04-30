@@ -1,13 +1,14 @@
 //
-//  HSWebAPI.h
+//  HSJSonRequest.h
 //  HomeServiz
 //
-//  Created by Bheema Badri on 26/04/18.
+//  Created by Bheema Badri on 27/04/18.
 //  Copyright © 2018 Bheema Badri. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "HSRequest.h"
 
-@interface HSWebAPI : NSObject
+@interface HSJSonRequest : HSRequest
 
 @end

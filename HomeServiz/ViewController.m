@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "HSLoginAPI.h"
 
 @interface ViewController ()
 
@@ -17,8 +18,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    [self login];
 }
+-(void)login {
+    [self showGlobalProgressView];
+    
+    [[HSLoginAPI loginApi]getloginsuccessBlock:^(HSLoginResponse * _Nonnull response) {
+        if(response){
+            [self hideProgressView];
+            NSLog(@"Success");
+        }
+    } failureBlock:^(HSLoginResponse * _Nonnull response) {
+        [self hideProgressView];
+        NSLog(@"FAilure");
 
+        //[self handleError:response];
+    }];
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
