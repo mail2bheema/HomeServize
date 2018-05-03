@@ -12,10 +12,10 @@
 #import "NSString+Helper.h"
 #import "NSDictionary+Validation.h"
 
-static NSString *const kJMCacheName = @"hsCache";
-static NSString *const kJMCachedData = @"hsCachedData";
-static NSString *const kJMCacheLifeKey = @"hsCacheLife";
-static NSString *const kJMCacheTimeStamp = @"hsTimestamp";
+static NSString *const kHSCacheName = @"hsCache";
+static NSString *const kHSCachedData = @"hsCachedData";
+static NSString *const kHSCacheLifeKey = @"hsCacheLife";
+static NSString *const kHSCacheTimeStamp = @"hsTimestamp";
 
 @interface HSCacheManager ()
 //@property (strong, nonatomic) PINCache *pinCache;
@@ -55,11 +55,11 @@ static HSCacheManager *sharedInstance = nil;
     
 //    [[self pinCache] objectForKey:[self cacheKeyForRequest:request] block:^(PINCache * _Nonnull cache, NSString * _Nonnull key, id  _Nullable object, NSDate * _Nullable dateModified) {
     
-//        JMCacheManager *strongSelf = __weakSelf;
+//        HSCacheManager *strongSelf = __weakSelf;
 //        BOOL validData = [strongSelf validateData:(NSDictionary *)object forRequest:request forSavedDate:dateModified];
 //
 //        if (validData) {
-//            datahandler ([(NSDictionary *)object objectForKey:kJMCachedData]);
+//            datahandler ([(NSDictionary *)object objectForKey:kHSCachedData]);
 //        }
 //        else{
 //            datahandler(nil);
@@ -83,9 +83,9 @@ static HSCacheManager *sharedInstance = nil;
             if (response.httpStatusCode == 200) {
                 // Save Cache Information as Well
                 NSMutableDictionary *cacheDict = [NSMutableDictionary new];
-                [cacheDict setObject:data forKey:kJMCachedData];
-                [cacheDict setObject:[NSNumber numberWithUnsignedInteger:request.cacheType] forKey:kJMCacheLifeKey];
-                [cacheDict setObject:[NSDate date] forKey:kJMCacheTimeStamp];
+                [cacheDict setObject:data forKey:kHSCachedData];
+                [cacheDict setObject:[NSNumber numberWithUnsignedInteger:request.cacheType] forKey:kHSCacheLifeKey];
+                [cacheDict setObject:[NSDate date] forKey:kHSCacheTimeStamp];
                 // Save it To The Cache
 //                [[self pinCache] setObject:[NSDictionary dictionaryWithDictionary:cacheDict] forKey:[self cacheKeyForRequest:request]];
             }
@@ -112,9 +112,9 @@ static HSCacheManager *sharedInstance = nil;
     __block BOOL valid = NO;
     dispatch_sync(_cacheQueue, ^{
         NSDate *currentDate = [NSDate date];
-        NSDate *savedDateLoc = [dictSaved objectForKey:kJMCacheTimeStamp];
+        NSDate *savedDateLoc = [dictSaved objectForKey:kHSCacheTimeStamp];
         
-        HSCacheType cacheType = [[dictSaved objectForKey:kJMCacheLifeKey] unsignedIntegerValue];
+        HSCacheType cacheType = [[dictSaved objectForKey:kHSCacheLifeKey] unsignedIntegerValue];
         NSUInteger cacheTime = [self cacheTimeWithCacheType:cacheType];
         
         if ([currentDate timeIntervalSinceDate:savedDateLoc] < cacheTime && !request.forceCacheRefresh) {

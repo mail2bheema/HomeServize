@@ -1,5 +1,5 @@
 //
-//  JMCacheManager.h
+//  HSCacheManager.h
 //  HomeServiz
 //
 //  Created by Bheema Badri on 27/04/18.

@@ -11,10 +11,14 @@
 #import "HSWebAPI.h"
 #import "HSNetworkProtocols.h"
 
+
 @class HSThreadSafeMap;
+@class HSCacheManager;
 
 @interface HSWebAPI () <HSAPIDelegate>
+@property (nullable, strong, nonatomic) HSCacheManager *cacheManager;
 @property (nullable, strong, nonatomic) HSThreadSafeMap *networkRequests;
+
 @property (nonnull, strong, nonatomic) NSLock *lock;
 
 - (void)startSendingRequest:(nonnull HSRequest *)request

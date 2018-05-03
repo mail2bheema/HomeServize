@@ -8,8 +8,12 @@
 
 #import "ViewController.h"
 #import "HSLoginAPI.h"
+#import "HSOTPViewController.h"
 
-@interface ViewController ()
+@interface ViewController () {
+    
+    __weak IBOutlet UITextField *textField;
+}
 
 @end
 
@@ -20,20 +24,42 @@
     // Do any additional setup after loading the view, typically from a nib.
     [self login];
 }
--(void)login {
-    [self showGlobalProgressView];
+
+-(IBAction)continueRegister:(id)sender {
     
-    [[HSLoginAPI loginApi]getloginsuccessBlock:^(HSLoginResponse * _Nonnull response) {
+    [self showGlobalProgressView];
+    NSMutableDictionary *body = [NSMutableDictionary new];
+    [body setValue:textField.text forKey:@"phone"];
+    [[HSLoginAPI loginApi]getloginsuccessBlock:^(HSLoginResponse * _Nonnull response)  {
         if(response){
             [self hideProgressView];
-            NSLog(@"Success");
+            [self navigateToOtp:response];
         }
-    } failureBlock:^(HSLoginResponse * _Nonnull response) {
+    }inputDict:body failureBlock:^(HSLoginResponse * _Nonnull response) {
         [self hideProgressView];
         NSLog(@"FAilure");
-
         //[self handleError:response];
     }];
+
+}
+
+-(void)navigateToOtp:(HSLoginResponse*)tempResp {
+    UIStoryboard *str = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    HSOTPViewController *obj = [str instantiateViewControllerWithIdentifier:@"HSOTPViewController"];
+    obj.resp = tempResp;
+    [self.navigationController pushViewController:obj animated:YES];
+
+}
+-(IBAction)faceBookRegister:(id)sender {
+    
+}
+
+-(IBAction)gmailRegister:(id)sender {
+    
+}
+
+-(void)login {
 
 }
 

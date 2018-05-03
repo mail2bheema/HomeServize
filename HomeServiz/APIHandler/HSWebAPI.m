@@ -17,7 +17,7 @@
 #import "HSRequestSignature.h"
 #import "NSString+Helper.h"
 #import "AFNetworking.h"
-
+#import "HSCacheManager.h"
 
 
 @class AFHTTPResponseSerializer;
@@ -34,7 +34,7 @@ static NSString *const kRequestHeader_Authorization = @"Authorization";
 
 - (instancetype)init{
     if (self = [super init]) {
-        //_cacheManager = [HSCacheManager manager];
+        _cacheManager = [HSCacheManager manager];
         _networkRequests = [[HSThreadSafeMap alloc] init];
         _lock = [[NSLock alloc] init];
     }
@@ -45,44 +45,44 @@ static NSString *const kRequestHeader_Authorization = @"Authorization";
                   failureBlock:(nonnull void (^)(HSAPIResponse * _Nonnull response))failureBlock
        validateSuccessfulBlock:(nullable BOOL (^)(HSAPIResponse * _Nonnull response))validateSuccessfulBlock{
     
-//    if (request.cacheType != kHSCacheNone) {
-//        [[self cacheManager] dataForRequest:request dataHandler:^(id data) {
-//            if (data) {
-//                // It's a Valid Data, Convert the data into Model ,return the Model on Main Thread
-//                HSAPIResponse *parsedResponse = [[self class] parseWithResponse:data
-//                                                                        request:request
-//                                                                    urlResponse:nil
-//                                                                          error:nil];
-//
-//                NSLog(@"\n\n====== Cached API Response======\nRequest:%@\nHeaders:%@\nBody:%@\nResponse:%@\n======Cached API Response======\n\n",[request apiPath], [[request request] allHTTPHeaderFields], [[NSString alloc] initWithData:[[request request] HTTPBody] encoding:NSUTF8StringEncoding],data);
-//
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    successBlock(parsedResponse);
-//                });
-//            }
-//            else{
-//                // Clear The Data
-//                //[[self cacheManager] removeDataForRequest:request];
-//
-//                // Call Web Service to refresh the Data.
-//                [self startSendingRequest:request
-//                             successBlock:successBlock
-//                             failureBlock:failureBlock
-//                  validateSuccessfulBlock:validateSuccessfulBlock];
-//            }
-//        }];
-//    }
-//    else{
-//        // Call Web Service to refresh the Data.
-//        [self startSendingRequest:request
-//                     successBlock:successBlock
-//                     failureBlock:failureBlock
-//          validateSuccessfulBlock:validateSuccessfulBlock];
-//    }
-    [self startSendingRequest:request
-                 successBlock:successBlock
-                 failureBlock:failureBlock
-      validateSuccessfulBlock:validateSuccessfulBlock];
+    if (request.cacheType != kHSCacheNone) {
+        [[self cacheManager] dataForRequest:request dataHandler:^(id data) {
+            if (data) {
+                // It's a Valid Data, Convert the data into Model ,return the Model on Main Thread
+                HSAPIResponse *parsedResponse = [[self class] parseWithResponse:data
+                                                                        request:request
+                                                                    urlResponse:nil
+                                                                          error:nil];
+
+                NSLog(@"\n\n====== Cached API Response======\nRequest:%@\nHeaders:%@\nBody:%@\nResponse:%@\n======Cached API Response======\n\n",[request apiPath], [[request request] allHTTPHeaderFields], [[NSString alloc] initWithData:[[request request] HTTPBody] encoding:NSUTF8StringEncoding],data);
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    successBlock(parsedResponse);
+                });
+            }
+            else{
+                 //Clear The Data
+                [[self cacheManager] removeDataForRequest:request];
+
+                // Call Web Service to refresh the Data.
+                [self startSendingRequest:request
+                             successBlock:successBlock
+                             failureBlock:failureBlock
+                  validateSuccessfulBlock:validateSuccessfulBlock];
+            }
+        }];
+    }
+    else{
+        // Call Web Service to refresh the Data.
+        [self startSendingRequest:request
+                     successBlock:successBlock
+                     failureBlock:failureBlock
+          validateSuccessfulBlock:validateSuccessfulBlock];
+    }
+//    [self startSendingRequest:request
+//                 successBlock:successBlock
+//                 failureBlock:failureBlock
+//      validateSuccessfulBlock:validateSuccessfulBlock];
 
 }
 
@@ -106,6 +106,17 @@ static NSString *const kRequestHeader_Authorization = @"Authorization";
     [request retryStarted];
     
     [self sendRequest:request withResponseBlock:^(HSRequest *request, HSAPIResponse *response, id responseData) {
+        [self cacheData:responseData response:response forRequest:request];
+        
+        if (responseData) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                                        successBlock(response);
+                                    });
+        }else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                                        failureBlock(response);
+                });
+        }
         
         // Check if refresh Token Should be refreshed
 //        [self shouldRefreshAccessTokenWithResponse:response requestSignature:[HSRequestSignature requestSignatureWithRequest:request successBlock:successBlock failureBlock:failureBlock validateSuccessfulBlock:validateSuccessfulBlock] refreshTokenBlock:^(BOOL refresh, BOOL success, NSArray * _Nullable continueWithRequests) {
@@ -160,6 +171,8 @@ static NSString *const kRequestHeader_Authorization = @"Authorization";
 //
 //            }
 //       }];
+        
+
         
     }];
 }
@@ -259,5 +272,12 @@ static NSString *const kRequestHeader_Authorization = @"Authorization";
         }
     }
 }
+
+- (void)cacheData:(NSObject *)data response:(HSAPIResponse *)response forRequest:(HSRequest *)request{
+    if (request.cacheType != kHSCacheNone) {
+        [[self cacheManager] saveData:data forRequest:request forResponse:response];
+    }
+}
+
 
 @end

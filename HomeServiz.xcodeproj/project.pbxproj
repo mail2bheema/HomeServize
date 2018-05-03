@@ -17,6 +17,9 @@
 		DC2EC7D12091BCB10076FFDF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC2EC7D02091BCB10076FFDF /* main.m */; };
 		DC2EC7DB2091BCB10076FFDF /* HomeServizTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC2EC7DA2091BCB10076FFDF /* HomeServizTests.m */; };
 		DC2EC7E62091BCB10076FFDF /* HomeServizUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC2EC7E52091BCB10076FFDF /* HomeServizUITests.m */; };
+		DCA15F00209A3F2B00B5F0DB /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA15EFF209A3F2B00B5F0DB /* UserModel.m */; };
+		DCA15F07209A8B0800B5F0DB /* HSWebAPI+RefreshToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA15F06209A8B0800B5F0DB /* HSWebAPI+RefreshToken.m */; };
+		DCA15F10209A983B00B5F0DB /* HSOTPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA15F0F209A983B00B5F0DB /* HSOTPViewController.m */; };
 		DCCA1E6120920F1200AED4B8 /* HSWebAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCA1E6020920F1200AED4B8 /* HSWebAPI.m */; };
 		DCCA1E642092100200AED4B8 /* HSResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCA1E632092100200AED4B8 /* HSResult.m */; };
 		DCCA1E672092101500AED4B8 /* HSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCA1E662092101500AED4B8 /* HSRequest.m */; };
@@ -141,6 +144,12 @@
 		DC2EC7E12091BCB10076FFDF /* HomeServizUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeServizUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC2EC7E52091BCB10076FFDF /* HomeServizUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeServizUITests.m; sourceTree = "<group>"; };
 		DC2EC7E72091BCB10076FFDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCA15EFE209A3F2B00B5F0DB /* UserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		DCA15EFF209A3F2B00B5F0DB /* UserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		DCA15F05209A8B0800B5F0DB /* HSWebAPI+RefreshToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HSWebAPI+RefreshToken.h"; sourceTree = "<group>"; };
+		DCA15F06209A8B0800B5F0DB /* HSWebAPI+RefreshToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "HSWebAPI+RefreshToken.m"; sourceTree = "<group>"; };
+		DCA15F0E209A983B00B5F0DB /* HSOTPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSOTPViewController.h; sourceTree = "<group>"; };
+		DCA15F0F209A983B00B5F0DB /* HSOTPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSOTPViewController.m; sourceTree = "<group>"; };
 		DCC2ED5D2097436500534155 /* HSCacheManagerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCacheManagerPrivate.h; sourceTree = "<group>"; };
 		DCCA1E5F20920F1200AED4B8 /* HSWebAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSWebAPI.h; sourceTree = "<group>"; };
 		DCCA1E6020920F1200AED4B8 /* HSWebAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSWebAPI.m; sourceTree = "<group>"; };
@@ -334,6 +343,8 @@
 				DCCA1ED920934FA300AED4B8 /* BaseViewController.m */,
 				DC2EC7C42091BCB10076FFDF /* ViewController.h */,
 				DC2EC7C52091BCB10076FFDF /* ViewController.m */,
+				DCA15F0E209A983B00B5F0DB /* HSOTPViewController.h */,
+				DCA15F0F209A983B00B5F0DB /* HSOTPViewController.m */,
 				DC2EC7C72091BCB10076FFDF /* Main.storyboard */,
 				DC2EC7CA2091BCB10076FFDF /* Assets.xcassets */,
 				DC2EC7CC2091BCB10076FFDF /* LaunchScreen.storyboard */,
@@ -361,6 +372,15 @@
 			path = HomeServizUITests;
 			sourceTree = "<group>";
 		};
+		DCA15EFD209A3F0B00B5F0DB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DCA15EFE209A3F2B00B5F0DB /* UserModel.h */,
+				DCA15EFF209A3F2B00B5F0DB /* UserModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		DCCA1E5E20920EF900AED4B8 /* APIHandler */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,6 +402,8 @@
 				DCCA1EBD20933C7500AED4B8 /* HSRequestSignature.m */,
 				DCCA1F5B2093523700AED4B8 /* HSJSonRequest.h */,
 				DCCA1F5C2093523700AED4B8 /* HSJSonRequest.m */,
+				DCA15F05209A8B0800B5F0DB /* HSWebAPI+RefreshToken.h */,
+				DCA15F06209A8B0800B5F0DB /* HSWebAPI+RefreshToken.m */,
 			);
 			path = APIHandler;
 			sourceTree = "<group>";
@@ -419,6 +441,7 @@
 		DCCA1ED120934F2200AED4B8 /* LoginAPI Handler */ = {
 			isa = PBXGroup;
 			children = (
+				DCA15EFD209A3F0B00B5F0DB /* Model */,
 				DCCA1ED220934F2200AED4B8 /* HSLoginAPI.h */,
 				DCCA1ED320934F2200AED4B8 /* HSLoginAPI.m */,
 				DCCA1ED420934F2200AED4B8 /* HSLoginResponse.h */,
@@ -822,6 +845,7 @@
 				DCCA1ED720934F2200AED4B8 /* HSLoginResponse.m in Sources */,
 				DCCA1F622093648700AED4B8 /* HSCacheManager.m in Sources */,
 				DCCA1EAE20930A8600AED4B8 /* HSWebAPI+Helpers.m in Sources */,
+				DCA15F00209A3F2B00B5F0DB /* UserModel.m in Sources */,
 				DC2EC7D12091BCB10076FFDF /* main.m in Sources */,
 				DCCA1E672092101500AED4B8 /* HSRequest.m in Sources */,
 				DCCA1EC420934B9A00AED4B8 /* NSString+AES.m in Sources */,
@@ -834,9 +858,11 @@
 				DCCA1EBE20933C7500AED4B8 /* HSRequestSignature.m in Sources */,
 				DCCA1E712092121900AED4B8 /* HSAPIResponse.m in Sources */,
 				DCCA1E6B2092110E00AED4B8 /* NSDictionary+Validation.m in Sources */,
+				DCA15F10209A983B00B5F0DB /* HSOTPViewController.m in Sources */,
 				DC2EC7C32091BCB10076FFDF /* AppDelegate.m in Sources */,
 				DCCA1E6120920F1200AED4B8 /* HSWebAPI.m in Sources */,
 				DCCA1E6E209211C700AED4B8 /* NSString+Helper.m in Sources */,
+				DCA15F07209A8B0800B5F0DB /* HSWebAPI+RefreshToken.m in Sources */,
 				DCCA1EDA20934FA300AED4B8 /* BaseViewController.m in Sources */,
 				DCCA1EBB20930EB400AED4B8 /* HSThreadSafeMap.m in Sources */,
 			);
@@ -1005,6 +1031,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DVME53YW5T;
 				INFOPLIST_FILE = HomeServiz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sample.HomeServiz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1020,6 +1047,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DVME53YW5T;
 				INFOPLIST_FILE = HomeServiz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sample.HomeServiz;
 				PRODUCT_NAME = "$(TARGET_NAME)";

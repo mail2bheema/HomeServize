@@ -24,15 +24,12 @@ static HSLoginAPI *sharedInstance = nil;
 }
 
 - (void)getloginsuccessBlock:(nonnull void (^)(HSLoginResponse * _Nonnull response))successBlock
-                failureBlock:(nonnull void (^)(HSLoginResponse * _Nonnull response))failureBlock {
+inputDict:(NSDictionary *_Nullable)dict failureBlock:(nonnull void (^)(HSLoginResponse * _Nonnull response))failureBlock {
+    
     NSMutableDictionary *headers = [NSMutableDictionary new];
     [headers addEntriesFromDictionary:[[self class] authorizationDictWithAccessToken:nil tokenType:nil]];
-    
-    NSMutableDictionary *body = [NSMutableDictionary new];
-    [body setValue:@"9860435653" forKey:@"phone"];
-    [body setValue:@"sushant@gmail.com" forKey:@"email"];
 
-    HSJSonRequest *request = [[HSJSonRequest alloc] initRequestWithAPI:@"http://101.53.130.236:8282/api/login"                                withType:kHTTPRequestPOST withDictionaryBody:body headers:headers];
+    HSJSonRequest *request = [[HSJSonRequest alloc] initRequestWithAPI:@"http://101.53.130.236:8282/api/login"                                withType:kHTTPRequestPOST withDictionaryBody:dict headers:headers];
     
     request.parserClass = [HSLoginResponse class];
     [self downloadDataForRequest:request successBlock:^(HSAPIResponse * _Nonnull response) {

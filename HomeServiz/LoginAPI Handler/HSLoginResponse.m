@@ -10,5 +10,9 @@
 
 
 @implementation HSLoginResponse
++ (JSONKeyMapper *)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"uid":@"id",@"ustatus":@"status"}];
+}
 
 @end
