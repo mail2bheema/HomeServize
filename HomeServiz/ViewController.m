@@ -13,6 +13,8 @@
 @interface ViewController () {
     
     __weak IBOutlet UITextField *textField;
+    __weak IBOutlet UIButton *loginBtn;
+
 }
 
 @end
@@ -21,8 +23,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    [self login];
+
+//    loginBtn.enabled = NO;
+//    loginBtn.alpha = 0.75;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -33,19 +36,24 @@
 
 -(IBAction)continueRegister:(id)sender {
     
-    [self showGlobalProgressView];
-    NSMutableDictionary *body = [NSMutableDictionary new];
-    [body setValue:textField.text forKey:@"phone"];
-    [[HSLoginAPI loginApi]getloginsuccessBlock:^(HSLoginResponse * _Nonnull response)  {
-        if(response){
+    if (textField.text.length >9) {
+//        loginBtn.enabled = YES;
+//        loginBtn.alpha = 1.0;
+
+        [self showGlobalProgressView];
+        NSMutableDictionary *body = [NSMutableDictionary new];
+        [body setValue:textField.text forKey:@"phone"];
+        [[HSLoginAPI loginApi]getloginsuccessBlock:^(HSLoginResponse * _Nonnull response)  {
+            if(response){
+                [self hideProgressView];
+                [self navigateToOtp:response];
+            }
+        }inputDict:body failureBlock:^(HSLoginResponse * _Nonnull response) {
             [self hideProgressView];
-            [self navigateToOtp:response];
-        }
-    }inputDict:body failureBlock:^(HSLoginResponse * _Nonnull response) {
-        [self hideProgressView];
-        NSLog(@"FAilure");
-        //[self handleError:response];
-    }];
+            NSLog(@"FAilure");
+            //[self handleError:response];
+        }];
+    }
 
 }
 
@@ -63,10 +71,6 @@
 
 -(IBAction)gmailRegister:(id)sender {
     
-}
-
--(void)login {
-
 }
 
 - (void)didReceiveMemoryWarning {
