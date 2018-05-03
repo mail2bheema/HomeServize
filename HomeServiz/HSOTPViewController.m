@@ -7,6 +7,7 @@
 //
 
 #import "HSOTPViewController.h"
+#import "HSLoginAPI.h"
 
 @interface HSOTPViewController () {
     
@@ -23,14 +24,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    otpField.text = self.resp.otp;
     // Do any additional setup after loading the view.
+    [self updateOtp];
+}
+
+-(void)updateOtp {
+    otpLabel.text = [NSString stringWithFormat:@"Enter OTP sent to %@",self.loginResp.phone];
+    otpField.text = self.loginResp.otp;
+
 }
 
 -(IBAction)login:(id)sender {
     
 }
 
+-(IBAction)resendOtp:(id)sender {
+    
+    [self showGlobalProgressView];
+    NSMutableDictionary *body = [NSMutableDictionary new];
+    [body setValue:self.loginResp.phone forKey:@"phone"];
+    [[HSLoginAPI loginApi]getloginsuccessBlock:^(HSLoginResponse * _Nonnull response)  {
+        if(response){
+            self.loginResp = response;
+            [self updateOtp];
+            [self hideProgressView];
+        }
+    }inputDict:body failureBlock:^(HSLoginResponse * _Nonnull response) {
+        [self hideProgressView];
+        NSLog(@"FAilure");
+        //[self handleError:response];
+    }];
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

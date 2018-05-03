@@ -47,7 +47,7 @@
     UIStoryboard *str = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     HSOTPViewController *obj = [str instantiateViewControllerWithIdentifier:@"HSOTPViewController"];
-    obj.resp = tempResp;
+    obj.loginResp = tempResp;
     [self.navigationController pushViewController:obj animated:YES];
 
 }

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "HSLoginResponse.h"
+#import "BaseViewController.h"
 
-@interface HSOTPViewController : UIViewController
+@interface HSOTPViewController : BaseViewController
 
-@property(nonatomic, strong) HSLoginResponse *resp;
+@property(nonatomic, strong) HSLoginResponse *loginResp;
 @end
