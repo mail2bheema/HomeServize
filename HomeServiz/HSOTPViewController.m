@@ -14,7 +14,7 @@
     __weak IBOutlet UITextField *otpField;
     __weak IBOutlet UILabel *timerLabel;
     __weak IBOutlet UILabel *otpLabel;
-
+    
 }
 
 @end
