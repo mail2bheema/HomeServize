@@ -30,7 +30,6 @@
 
 -(void)updateOtp {
     otpLabel.text = [NSString stringWithFormat:@"Enter OTP sent to %@",self.loginResp.phone];
-    
     otpField.text = self.loginResp.otp;
 
 }
