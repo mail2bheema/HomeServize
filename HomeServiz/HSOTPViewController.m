@@ -8,6 +8,7 @@
 
 #import "HSOTPViewController.h"
 #import "HSLoginAPI.h"
+#import "HSHomeViewController.h"
 
 @interface HSOTPViewController () {
     
@@ -35,6 +36,25 @@
 
 -(IBAction)login:(id)sender {
     
+    [self showGlobalProgressView];
+    NSMutableDictionary *body = [NSMutableDictionary new];
+    [body setValue:otpField.text forKey:@"phone"];
+    [[HSLoginAPI loginApi]getsignUpsuccessBlock:^(HSLoginResponse * _Nonnull response)  {
+        if(response){
+            [self hideProgressView];
+            
+            UIStoryboard *str = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            HSHomeViewController *obj = [str instantiateViewControllerWithIdentifier:@"HomeViewController"];
+            obj.loginResp = response;
+            [self.navigationController pushViewController:obj animated:YES];
+
+        }
+    }inputDict:body failureBlock:^(HSLoginResponse * _Nonnull response) {
+        [self hideProgressView];
+        NSLog(@"FAilure");
+        //[self handleError:response];
+    }];
+
 }
 
 -(IBAction)resendOtp:(id)sender {
@@ -42,7 +62,7 @@
     [self showGlobalProgressView];
     NSMutableDictionary *body = [NSMutableDictionary new];
     [body setValue:self.loginResp.phone forKey:@"phone"];
-    [[HSLoginAPI loginApi]getloginsuccessBlock:^(HSLoginResponse * _Nonnull response)  {
+    [[HSLoginAPI loginApi]getsignUpsuccessBlock:^(HSLoginResponse * _Nonnull response)  {
         if(response){
             self.loginResp = response;
             [self updateOtp];

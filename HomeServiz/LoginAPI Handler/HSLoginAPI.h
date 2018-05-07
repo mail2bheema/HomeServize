@@ -13,8 +13,10 @@
 @interface HSLoginAPI : HSWebAPI
 
 + (nonnull instancetype)loginApi;
-- (void)getloginsuccessBlock:(nonnull void (^)(HSLoginResponse * _Nonnull response))successBlock inputDict:(NSDictionary *_Nullable)dict
+- (void)getsignUpsuccessBlock:(nonnull void (^)(HSLoginResponse * _Nonnull response))successBlock inputDict:(NSDictionary *_Nullable)dict
                      failureBlock:(nonnull void (^)(HSLoginResponse * _Nonnull response))failureBlock;
+- (void)getLoginsuccessBlock:(nonnull void (^)(HSLoginResponse * _Nonnull response))successBlock inputDict:(NSDictionary *_Nullable)dict
+                 failureBlock:(nonnull void (^)(HSLoginResponse * _Nonnull response))failureBlock;
 
 
 @end

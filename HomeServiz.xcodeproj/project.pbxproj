@@ -20,6 +20,7 @@
 		DCA15F00209A3F2B00B5F0DB /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA15EFF209A3F2B00B5F0DB /* UserModel.m */; };
 		DCA15F07209A8B0800B5F0DB /* HSWebAPI+RefreshToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA15F06209A8B0800B5F0DB /* HSWebAPI+RefreshToken.m */; };
 		DCA15F10209A983B00B5F0DB /* HSOTPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA15F0F209A983B00B5F0DB /* HSOTPViewController.m */; };
+		DCA15F13209AE54A00B5F0DB /* HSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA15F12209AE54A00B5F0DB /* HSHomeViewController.m */; };
 		DCCA1E6120920F1200AED4B8 /* HSWebAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCA1E6020920F1200AED4B8 /* HSWebAPI.m */; };
 		DCCA1E642092100200AED4B8 /* HSResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCA1E632092100200AED4B8 /* HSResult.m */; };
 		DCCA1E672092101500AED4B8 /* HSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCA1E662092101500AED4B8 /* HSRequest.m */; };
@@ -150,6 +151,8 @@
 		DCA15F06209A8B0800B5F0DB /* HSWebAPI+RefreshToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "HSWebAPI+RefreshToken.m"; sourceTree = "<group>"; };
 		DCA15F0E209A983B00B5F0DB /* HSOTPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSOTPViewController.h; sourceTree = "<group>"; };
 		DCA15F0F209A983B00B5F0DB /* HSOTPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSOTPViewController.m; sourceTree = "<group>"; };
+		DCA15F11209AE54A00B5F0DB /* HSHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSHomeViewController.h; sourceTree = "<group>"; };
+		DCA15F12209AE54A00B5F0DB /* HSHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSHomeViewController.m; sourceTree = "<group>"; };
 		DCC2ED5D2097436500534155 /* HSCacheManagerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCacheManagerPrivate.h; sourceTree = "<group>"; };
 		DCCA1E5F20920F1200AED4B8 /* HSWebAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSWebAPI.h; sourceTree = "<group>"; };
 		DCCA1E6020920F1200AED4B8 /* HSWebAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSWebAPI.m; sourceTree = "<group>"; };
@@ -345,6 +348,8 @@
 				DC2EC7C52091BCB10076FFDF /* ViewController.m */,
 				DCA15F0E209A983B00B5F0DB /* HSOTPViewController.h */,
 				DCA15F0F209A983B00B5F0DB /* HSOTPViewController.m */,
+				DCA15F11209AE54A00B5F0DB /* HSHomeViewController.h */,
+				DCA15F12209AE54A00B5F0DB /* HSHomeViewController.m */,
 				DC2EC7C72091BCB10076FFDF /* Main.storyboard */,
 				DC2EC7CA2091BCB10076FFDF /* Assets.xcassets */,
 				DC2EC7CC2091BCB10076FFDF /* LaunchScreen.storyboard */,
@@ -843,6 +848,7 @@
 				DCCA1ECA20934C2A00AED4B8 /* NSData+CommonCrypto.m in Sources */,
 				DCCA1F1D20934FF000AED4B8 /* HSLoadingIndicator.m in Sources */,
 				DCCA1ED720934F2200AED4B8 /* HSLoginResponse.m in Sources */,
+				DCA15F13209AE54A00B5F0DB /* HSHomeViewController.m in Sources */,
 				DCCA1F622093648700AED4B8 /* HSCacheManager.m in Sources */,
 				DCCA1EAE20930A8600AED4B8 /* HSWebAPI+Helpers.m in Sources */,
 				DCA15F00209A3F2B00B5F0DB /* UserModel.m in Sources */,

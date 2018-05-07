@@ -37,13 +37,11 @@
 -(IBAction)continueRegister:(id)sender {
     
     if (textField.text.length >9) {
-//        loginBtn.enabled = YES;
-//        loginBtn.alpha = 1.0;
 
         [self showGlobalProgressView];
         NSMutableDictionary *body = [NSMutableDictionary new];
         [body setValue:textField.text forKey:@"phone"];
-        [[HSLoginAPI loginApi]getloginsuccessBlock:^(HSLoginResponse * _Nonnull response)  {
+        [[HSLoginAPI loginApi]getsignUpsuccessBlock:^(HSLoginResponse * _Nonnull response)  {
             if(response){
                 [self hideProgressView];
                 [self navigateToOtp:response];
@@ -58,12 +56,11 @@
 }
 
 -(void)navigateToOtp:(HSLoginResponse*)tempResp {
-    UIStoryboard *str = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
+    UIStoryboard *str = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     HSOTPViewController *obj = [str instantiateViewControllerWithIdentifier:@"HSOTPViewController"];
     obj.loginResp = tempResp;
     [self.navigationController pushViewController:obj animated:YES];
-
 }
 -(IBAction)faceBookRegister:(id)sender {
     

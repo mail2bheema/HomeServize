@@ -208,5 +208,19 @@
             </objects>
             <point key="canvasLocation" x="136" y="132.23388305847078"/>
         </scene>
+        <!--Home View Controller-->
+        <scene sceneID="7i6-MB-5gV">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" id="exy-BP-6bS" customClass="HSHomeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="O5W-vh-aaG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="HAi-VZ-T7H"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SCa-pI-Rg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
 </document>
